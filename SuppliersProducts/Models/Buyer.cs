@@ -12,19 +12,19 @@ namespace SuppliersProducts.Models
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "ФИО")]
+        [Display(Name = "Full Name")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$")]
         public string FullName { get; set; }
 
         [Required]
-        [Display(Name = "Дата")]
+        [Display(Name = "Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [Required]
         [StringLength(30)]
-        [Display(Name = "Адресс")]
+        [Display(Name = "Address")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z'\s-]*$")]
         public string Address { get; set; }
 

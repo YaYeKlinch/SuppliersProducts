@@ -53,7 +53,7 @@ namespace SuppliersProducts.Controllers
                     break;
             }
 
-            return View(await _context.Products.ToListAsync());
+            return View(await products.AsNoTracking().ToListAsync());
         }
 
         // GET: Products/Details/5

@@ -61,7 +61,7 @@ namespace SuppliersProducts.Controllers
                     break;
             }
 
-            return View(await _context.Buyers.ToListAsync());
+            return View(await buyers.AsNoTracking().ToListAsync());
         }
 
         // GET: Buyers/Details/5

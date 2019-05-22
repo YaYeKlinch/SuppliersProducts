@@ -9,17 +9,33 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div class="form-actions no-color">
+    <form asp-action="Index" method="get">
+        <p>
+            Full Name: <input type="text" name="SearchStringFullName" value="@ViewData["CurrentNameFilter"]" /><br /><br />
+            Nationality: <input type="text" name="SearchStringNationality" value="@ViewData["CurrentNationalityFilter"]" /><br /><br />
+            Supply Date: <input type="date" name="SearchStringSupplyDate" value="@ViewData["CurrentSupplyDateFilter"]" />
+        </p>
+        <p>
+            <br />
+            <input type="submit" value="Search" class="btn btn-dark" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </form>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["FullNameSortParm"]">@Html.DisplayNameFor(model => model.FullName)</a>
+</th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NationalitySortParm"]">@Html.DisplayNameFor(model => model.Nationality)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nationality)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SupplyDate)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SupplyDateSortParm"]">@Html.DisplayNameFor(model => model.SupplyDate)</a>
             </th>
             <th></th>
         </tr>

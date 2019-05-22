@@ -86,7 +86,7 @@ namespace SuppliersProducts.Controllers
             }
 
 
-            return View(await dataBaseContext.ToListAsync());
+            return View(await orders.AsNoTracking().ToListAsync());
         }
 
         // GET: Orders/Details/5

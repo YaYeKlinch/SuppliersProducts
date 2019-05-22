@@ -12,18 +12,18 @@ namespace SuppliersProducts.Models
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "Компания")]
+        [Display(Name = "Company")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$")]
         public string FullName { get; set; }
 
         [Required]
         [StringLength(30)]
-        [Display(Name = "Страна Происхождения")]
+        [Display(Name = "Origin Country")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z'\s-]*$")]
         public string Nationality { get; set; }
 
         [Required]
-        [Display(Name = "Дата Поставки")]
+        [Display(Name = "Supply Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime SupplyDate { get; set; }

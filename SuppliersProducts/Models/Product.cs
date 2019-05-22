@@ -12,13 +12,13 @@ namespace SuppliersProducts.Models
 
         [Required]
         [StringLength(50)]
-        [Display(Name ="Название Продукта")]
+        [Display(Name ="Name")]
         [RegularExpression(@"^[A-Z0-9]+[0-9a-zA-Z'\s-]*$")]
          public string Name { get; set; }
 
         [Required]
         [StringLength(20)]
-        [Display(Name = "Тип Продукта")]
+        [Display(Name = "Type")]
         [RegularExpression(@"^[A-Z]+[a-z'\s-]*$")]
         public string Type { get; set; }
 

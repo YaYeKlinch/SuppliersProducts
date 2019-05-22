@@ -14,7 +14,7 @@ namespace SuppliersProducts.Models
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "Код Заказа")]
+        [Display(Name = "Name")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$")]
         public string Name { get; set; }
 

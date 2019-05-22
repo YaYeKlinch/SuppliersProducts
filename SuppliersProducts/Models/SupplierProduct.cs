@@ -10,9 +10,9 @@ namespace SuppliersProducts.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Продукт")]
+        [Display(Name = "Product")]
         public int ProductID { get; set; }
-        [Display(Name = "Поставщик")]
+        [Display(Name = "Supplier")]
         public int SupplierID { get; set; }
 
         public Product Product { get; set; }

@@ -9,14 +9,29 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div class="form-actions no-color">
+    <form asp-action="Index" method="get">
+        <p>
+            Name: <input type="text" name="SearchStringName" value="@ViewData["CurrentNameFilter"]" /><br /><br />
+            Type: <input type="text" name="SearchStringType" value="@ViewData["CurrentTypeFilter"]" />
+        </p>
+        <p>
+            <br />
+            <input type="submit" value="Search" class="btn btn-dark" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </form>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]">@Html.DisplayNameFor(model => model.Type)</a>
             </th>
             <th></th>
         </tr>
