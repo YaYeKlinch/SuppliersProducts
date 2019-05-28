@@ -16,7 +16,7 @@ namespace SuppliersProducts.Controllers
         public IActionResult Index()
         {
             string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-            return Content($"your role: {role}");
+            return View();
         }
 
         [Authorize(Roles = "admin")]

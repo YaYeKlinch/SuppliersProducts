@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace SuppliersProducts.Controllers
         }
 
         // GET: Suppliers
+        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> Index(string sortOrder, string SearchStringFullName, string SearchStringNationality, DateTime SearchStringSupplyDate)
         {
             ViewData["FullNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";

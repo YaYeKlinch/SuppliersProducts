@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -90,6 +91,7 @@ namespace SuppliersProducts.Controllers
         }
 
         // GET: Orders/Details/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -110,6 +112,7 @@ namespace SuppliersProducts.Controllers
         }
 
         // GET: Orders/Create
+        [Authorize(Roles = "user")]
         public IActionResult Create()
         {
             ViewData["BuyerID"] = new SelectList(_context.Buyers, "ID", "Address");
