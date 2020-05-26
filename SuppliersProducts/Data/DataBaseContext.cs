@@ -14,20 +14,20 @@ namespace SuppliersProducts.Data
 
         }
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Buyer> Buyers { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<LabWork> LabWorks { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Passing> Passings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().ToTable("Product");
-            modelBuilder.Entity<Buyer>().ToTable("Buyer");
-            modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<LabWork>().ToTable("LabWork");
+            modelBuilder.Entity<Teacher>().ToTable("Teacher");
+            modelBuilder.Entity<Passing>().ToTable("Passing");
         }
 
-        public DbSet<SuppliersProducts.Models.Supplier> Supplier { get; set; }
+        public DbSet<SuppliersProducts.Models.Student> Student { get; set; }
 
-        public DbSet<SuppliersProducts.Models.SupplierProduct> SupplierProduct { get; set; }
+        public DbSet<SuppliersProducts.Models.StudentLabWork> StudentLabWork { get; set; }
     }
 
 }
