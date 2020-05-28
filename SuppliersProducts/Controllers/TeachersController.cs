@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +66,7 @@ namespace SuppliersProducts.Controllers
         }
 
         // GET: Buyers/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -83,6 +85,7 @@ namespace SuppliersProducts.Controllers
         }
 
         // GET: Buyers/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -93,6 +96,7 @@ namespace SuppliersProducts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("ID,FullName,Date,Address")] Teacher teacher)
         {
             if (ModelState.IsValid)
@@ -105,6 +109,7 @@ namespace SuppliersProducts.Controllers
         }
 
         // GET: Buyers/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -125,6 +130,7 @@ namespace SuppliersProducts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ID,FullName,Date,Address")] Teacher teacher)
         {
             if (id != teacher.ID)
@@ -156,6 +162,7 @@ namespace SuppliersProducts.Controllers
         }
 
         // GET: Buyers/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

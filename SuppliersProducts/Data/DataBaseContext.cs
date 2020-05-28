@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SuppliersProducts.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SuppliersProducts.Data
 {
-    public class DataBaseContext:DbContext
+    public class DataBaseContext: IdentityDbContext<IdentityUser>
     {
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
@@ -20,6 +22,7 @@ namespace SuppliersProducts.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<LabWork>().ToTable("LabWork");
             modelBuilder.Entity<Teacher>().ToTable("Teacher");
             modelBuilder.Entity<Passing>().ToTable("Passing");
