@@ -95,7 +95,7 @@ namespace SuppliersProducts.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Compare(string fp1, string fp2)
+        public IActionResult Compare(string fp1,string fp2)
         {
             Plagiator test = new Plagiator();
             double comparator = test.AveragePlagTest(fp1, fp2);
