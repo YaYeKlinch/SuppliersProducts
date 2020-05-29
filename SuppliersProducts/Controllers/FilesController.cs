@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using SuppliersProducts.ViewModel;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace SuppliersProducts.Controllers
 {
@@ -69,7 +70,7 @@ namespace SuppliersProducts.Controllers
             if (file != null)
             {
 
-                string path = _hostingEnvironment.ContentRootPath +"/"+ file.FileName;
+                string path = _hostingEnvironment.ContentRootPath +"\\"+ file.FileName;
 
                 using (var fileStream = new System.IO.FileStream(path, System.IO.FileMode.Create))
                 {
@@ -89,19 +90,17 @@ namespace SuppliersProducts.Controllers
             return View();
         }
         // GET: Files/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Compare()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Compare(string fp1, string fp2)
+        {
+            Plagiator test = new Plagiator();
+            double comparator = test.AveragePlagTest(fp1, fp2);
 
-            var file = await _context.File.FindAsync(id);
-            if (file == null)
-            {
-                return NotFound();
-            }
-            return View(file);
+            return Content(comparator.ToString());
         }
 
         // POST: Files/Edit/5
