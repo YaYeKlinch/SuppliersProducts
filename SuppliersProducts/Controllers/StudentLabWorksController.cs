@@ -105,7 +105,7 @@ namespace SuppliersProducts.Controllers
                     {
                         StudentID = sLabView.StudentID,
                         LabWorkID = sLabView.LabWorkID,
-                        Path = path
+                        Path = Path.FileName
 
                     };
                     _context.Add(studentLabWork);
@@ -120,22 +120,58 @@ namespace SuppliersProducts.Controllers
 
             return View();
         }
-        public async Task<IActionResult> Compare([Bind("ID,StudentID,Path")] StudentLabWork studentLab)
+        // GET: SupplierProducts/Compare/5
+        public IActionResult Compare()
         {
-            /*string res = null;
-            if (ModelState.IsValid)
-            {
-                string f1 = studentLab.Path;
-                string f2 = studentLab.Path;                               //Я єбу як прикрутити. Сподіваюся в тебе вийде!)
-                Plagiator test = new Plagiator();
-                res = test.AveragePlagTest(f1, f2).ToString();
-            }
-
-            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "FullName", studentLab.StudentID);
-            ViewData["LabWorkID"] = new SelectList(_context.LabWorks, "ID", "Name", studentLab.LabWorkID);
-            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "FullName", studentLab.StudentID);
-            ViewData["LabWorkID"] = new SelectList(_context.LabWorks, "ID", "Name", studentLab.LabWorkID);*/
+            ViewData["LabWorkID"] = new SelectList(_context.LabWorks, "ID", "Name");
+            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "FullName");
+            ViewData["Path"] = new SelectList(_context.StudentLabWork, "ID", "Path");
             return View();
+        }
+        [HttpPost, ActionName("Compare")]
+        public async Task<IActionResult> Compare([Bind("ID,StudentID,Path")] StudentLabWork studentLab, int fp1, int fp2,
+            Student student, LabWork labwork)
+        {
+            string res = null;
+
+
+            var studentLabWork1 = await _context.StudentLabWork.FindAsync(fp1);
+            int idstudent1 = studentLabWork1.StudentID;
+            var dbstudent1 = await _context.Student.FindAsync(idstudent1);
+            string student1 = dbstudent1.FullName;
+            int idlab1 = studentLabWork1.StudentID;
+            var dblab1 = await _context.LabWorks.FindAsync(idlab1);
+            string lab1 = dblab1.Name;
+
+            string f1 = _hostingEnvironment.ContentRootPath + "\\" + studentLabWork1.Path;
+
+            var studentLabWork2 = await _context.StudentLabWork.FindAsync(fp2);
+            string f2 = _hostingEnvironment.ContentRootPath + "\\" + studentLabWork2.Path;
+            int idstudent2 = studentLabWork2.StudentID;
+            var dbstudent2 = await _context.Student.FindAsync(idstudent2);
+            string student2 = dbstudent2.FullName;
+            int idlab2 = studentLabWork2.StudentID;
+            var dblab2 = await _context.LabWorks.FindAsync(idlab1);
+            string lab2 = dblab1.Name;
+            Plagiator test = new Plagiator();
+               double comparator = test.AveragePlagTest(f1, f2);
+            comparator = comparator * 100;
+            @ViewBag.lab1 = lab1;
+            @ViewBag.lab2 = lab2;
+            @ViewBag.student1 = student1;
+            @ViewBag.student2 = student2;
+
+            @ViewBag.Result = comparator.ToString()+"%";
+           ViewBag.UltimateRes=" Lab "+ @ViewBag.lab1+ " of " + @ViewBag.student1 + " and lab " + @ViewBag.lab2 + " of " + @ViewBag.student2 +
+              " has " + @ViewBag.Result + " of plagiat code.";
+            ViewData["LabWorkID"] = new SelectList(_context.LabWorks, "ID", "Name");
+            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "FullName");
+            ViewData["Path"] = new SelectList(_context.StudentLabWork, "ID", "Path");
+            return View();
+            
+
+           
+           
         }
 
             // GET: SupplierProducts/Edit/5
