@@ -18,6 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Student)
             </th>
+            <th>
+                @Html.DisplayNameFor(item=>item.Path)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,6 +34,10 @@
                 @Html.DisplayFor(modelItem => item.Student.FullName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Path)
+            </td>
+            <td>
+                <a asp-action="Compare" asp-controller="StudentLabWorks">Compare</a> |
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>

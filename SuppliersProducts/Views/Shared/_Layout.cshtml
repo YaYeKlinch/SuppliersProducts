@@ -50,9 +50,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Index">About</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Files" asp-action="Index">File</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @await Html.PartialAsync("LoginPartial") 
+                        @await Html.PartialAsync("LoginPartial")
 
                     </ul>
                 </div>

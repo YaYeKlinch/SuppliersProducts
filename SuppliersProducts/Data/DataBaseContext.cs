@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SuppliersProducts.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using SuppliersProducts.ViewModel;
 
 namespace SuppliersProducts.Data
 {
@@ -20,12 +21,15 @@ namespace SuppliersProducts.Data
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Passing> Passings { get; set; }
 
+        public DbSet<File> File { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<LabWork>().ToTable("LabWork");
             modelBuilder.Entity<Teacher>().ToTable("Teacher");
             modelBuilder.Entity<Passing>().ToTable("Passing");
+            modelBuilder.Entity<File>().ToTable("File");
         }
 
         public DbSet<SuppliersProducts.Models.Student> Student { get; set; }

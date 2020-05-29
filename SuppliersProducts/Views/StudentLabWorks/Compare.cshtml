@@ -1,13 +1,9 @@
-﻿@model SuppliersProducts.ViewModel.SLabView
-
+﻿@model SuppliersProducts.Models.StudentLabWork
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Compare";
 }
 
-<h1>Create</h1>
-
-<h4>StudentLabWork</h4>
-<hr />
+<h1>Compare</h1>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
@@ -21,29 +17,17 @@
                 <select asp-for="StudentID" class="form-control" asp-items="ViewBag.StudentID"></select>
             </div>
             <div class="form-group">
-                <input asp-for="Path" class="form-control file-input">
-                <label asp-for="Path" class="file-label">Choose File...</label>
+                <label asp-for="LabWorkID" class="control-label"></label>
+                <select asp-for="LabWorkID" class="form-control" asp-items="ViewBag.LabWorkID1"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentID" class="control-label"></label>
+                <select asp-for="StudentID" class="form-control" asp-items="ViewBag.StudentID1"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-            @section Scripts {
-                <script>
-                    $(document).ready(function () {
-                        $('.custom-file-input').on("change", function () {
-                            var fileName = $(this).val().split("\\").pop();
-                            $(this).next('.custom-file-label').html(fileName);
-                        });
-                    });
-
-                </script>
-
-            }
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
